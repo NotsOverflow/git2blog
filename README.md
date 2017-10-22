@@ -2,9 +2,9 @@
 
 Turn a folder containing markdown fils into a blog
 
-'''bash
+```bash
 ./gmb.py -i [folder with markdowns goodies] -o [any-folder] {options} 
-'''
+```
 
 >"best application ever!" nil york teams
 
