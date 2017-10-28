@@ -22,9 +22,10 @@ a:hover{background-color:grey;color:white;}
 .image{width: 100%;margin-top: 1.33em;margin-bottom: 1.33em;}
 .code-toolbar{border-radius: 0 !important;}
 .bar_element{width:100%;height:2px;background-color:grey;margin-top:14px;}
-.normal_element{position:relative;width:100%;min-height:30px;text-align: center;font-weight: normal;font-size: large;}
+.normal_element{position:relative;width:100%;min-height:30px;text-align: center;font-weight: normal;font-size: large;margin: 15px 0px 15px 0px;}
 .index_element{width:100%;min-height:30px;font-size:x-large;text-align: center;}
 .index_element:hover{}
+.hyperlink{font-size: large;}
 .tabulation{display:block;width:20px;height:100%;float:left;}
 .return_link{font-weight: bolder;font-weight: normal;}
 .header{font-size: xx-large;font-weight: bold;margin-bottom:30px;}
@@ -33,13 +34,20 @@ a:hover{background-color:grey;color:white;}
 .prev_link{position:absolute;top:0px;left:0px;}
 .next_link{position:absolute;top:0px;right:0px;}
 .home_link{position:absolute;top:0px;left:50%;transform: translate(-50%);}
-.h1{font-weight: bold;text-align: left;font-size: normal;}
-.h2{font-weight: bold;text-align: left;font-size: large;}
+.h5{font-weight: bold;text-align: left;font-size: normal;}
+.h4{font-weight: bold;text-align: left;font-size: large;}
 .h3{font-weight: bolder;text-align: center;font-size: x-large;}
-.h4{font-weight: bolder;text-align: center;font-size: xx-large;}
-.h5{font-weight: bolder;text-align: center;font-size: xx-large;text-decoration:underline;}
+.h2{font-weight: bolder;text-align: center;font-size: xx-large;}
+.h1{font-weight: bolder;text-align: center;font-size: xx-large;text-decoration:underline;}
 .h6{font-weight: bolder;text-align: center;font-size: xx-large;border-bottom:solid grey 2px;}
-
-.sub-folder1{
-	background-color: #EEE;
+.sub-folder1{background-color: #EEE;}
+.sub-folder2{font-style: italic;}
+.header{
+   color: white;
+   text-shadow:
+       0px 0px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
 }

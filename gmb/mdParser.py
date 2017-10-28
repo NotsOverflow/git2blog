@@ -37,13 +37,14 @@ class Parser :
 			">" : self.quote,
 			"`":self.code
 		}
-		self.nestedkeys = ["*","_", "`", "~", "-"]
+		self.nestedkeys = ["*","_", "`", "~", "-", "["]
 		self.nestedkey_option = {
 			"*" : self.bold_or_italic_or_del_or_sub,
 			"_"  : self.bold_or_italic_or_del_or_sub,
 			"~" : self.bold_or_italic_or_del_or_sub,
 			"-" : self.bold_or_italic_or_del_or_sub,
-			"`" : self.inline_code
+			"`" : self.inline_code,
+			"[" : self.inline_link
 		}
 		
 	def debug(self ,line ,level = 1):
@@ -121,6 +122,42 @@ class Parser :
 				result += self.nestedParse(string)
 		self.result_html += ["<div class=\"normal_element\">%s%s</div>" % (self.tabs(self.tabed), result)]
 		self.current_index += 1
+	
+	def anormal_exit(self, string):
+		self.debug(string,-1)
+		exit(-1)
+	
+	def inline_link(self, string) :
+		print(string)
+		self.debug("\t\t --- Inside inline_link ---\n")
+		name = ""
+		link = ""
+		pointer = 1
+		mid_point = 1
+		length = len(string)
+		if length < 5:
+			self.anormal_exit("invalid inline link, to small")
+		while pointer < length :
+			if string[pointer] == "]" and string[pointer - 1] != "\\":
+				name += string[1:pointer-1]
+				mid_point += pointer
+				pointer += 1
+				break
+			pointer += 1
+		print("step 1", string[pointer:])
+		if string[pointer] != "(" or pointer == length:
+			self.anormal_exit("invalid inline link, can't found (")
+		while pointer < length :
+			if string[pointer] == ")" and string[pointer - 1] != "\\":
+				link += string[mid_point:pointer-1]
+				pointer += 1
+				break
+			pointer +=1
+		print("step 2", string[pointer:])
+		if pointer == length:
+			self.anormal_exit("invalid link, can't find )")
+		self.debug("\t\t --- exiting inline link ---")
+		return "<a href=\"%s\" >%s</a>%s" % (link,name,self.nestedParse(string[pointer:]))
 	
 	def image(self, string) :
 		length = len(string)
@@ -252,6 +289,7 @@ class Parser :
 							add = "del"
 						if marker == "-":
 							add = "ins"
+							print("|" + string[2:pointer].replace(" ", ".")+ "|\n|" +string[pointer+2:].replace(" ", ".") + "|")
 						string = "<%s>%s</%s>%s"  % (add, self.nestedParse(string[2:pointer]), add, self.nestedParse(string[pointer+2:]))
 						self.debug("\t\tBuielt string (double) : %s" % string ) 
 						break
