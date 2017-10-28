@@ -128,7 +128,7 @@ class Parser :
 		exit(-1)
 	
 	def inline_link(self, string) :
-		print(string)
+		#print(string)
 		self.debug("\t\t --- Inside inline_link ---\n")
 		name = ""
 		link = ""
@@ -144,7 +144,7 @@ class Parser :
 				pointer += 1
 				break
 			pointer += 1
-		print("step 1", string[pointer:])
+		#print("step 1", string[pointer:])
 		if string[pointer] != "(" or pointer == length:
 			self.anormal_exit("invalid inline link, can't found (")
 		while pointer < length :
@@ -153,7 +153,7 @@ class Parser :
 				pointer += 1
 				break
 			pointer +=1
-		print("step 2", string[pointer:])
+		#print("step 2", string[pointer:])
 		if pointer == length:
 			self.anormal_exit("invalid link, can't find )")
 		self.debug("\t\t --- exiting inline link ---")
@@ -289,7 +289,7 @@ class Parser :
 							add = "del"
 						if marker == "-":
 							add = "ins"
-							print("|" + string[2:pointer].replace(" ", ".")+ "|\n|" +string[pointer+2:].replace(" ", ".") + "|")
+							#print("|" + string[2:pointer].replace(" ", ".")+ "|\n|" +string[pointer+2:].replace(" ", ".") + "|")
 						string = "<%s>%s</%s>%s"  % (add, self.nestedParse(string[2:pointer]), add, self.nestedParse(string[pointer+2:]))
 						self.debug("\t\tBuielt string (double) : %s" % string ) 
 						break
